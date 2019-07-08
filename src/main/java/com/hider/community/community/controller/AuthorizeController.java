@@ -1,4 +1,4 @@
-package com.hider.community.community.controlloer;
+package com.hider.community.community.controller;
 
 import com.hider.community.community.dto.AccessTokenDto;
 import com.hider.community.community.dto.GithubUser;
