@@ -29,7 +29,6 @@ public class QuestionService {
         if (page < 1 || page > paginationDto.getTotalPage()) {
             page = 1;
         }
-
         //分页公式
         Integer offset = size * (page - 1);
 

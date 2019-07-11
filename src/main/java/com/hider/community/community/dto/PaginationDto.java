@@ -31,6 +31,10 @@ public class PaginationDto {
             totalPage = totalCount / size + 1;
         }
 
+        if (page < 1 || page > totalPage) {
+            page = 1;
+        }
+
         this.page = page;
 
         pages.add(page);
