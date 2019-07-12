@@ -23,18 +23,9 @@ public class PaginationDto {
      * @param page
      * @param size
      */
-    public void setPagination(Integer totalCount, Integer page, Integer size) {
+    public void setPagination(Integer totalPage, Integer page) {
 
-        if (totalCount % size == 0) {
-            totalPage = totalCount / size;
-        } else {
-            totalPage = totalCount / size + 1;
-        }
-
-        if (page < 1 || page > totalPage) {
-            page = 1;
-        }
-
+        this.totalPage = totalPage;
         this.page = page;
 
         pages.add(page);
