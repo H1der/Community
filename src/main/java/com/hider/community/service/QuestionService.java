@@ -2,6 +2,8 @@ package com.hider.community.service;
 
 import com.hider.community.dto.PaginationDto;
 import com.hider.community.dto.QuestionDto;
+import com.hider.community.exception.CustomizeErrorCode;
+import com.hider.community.exception.CustomizeException;
 import com.hider.community.mapper.QuestionMapper;
 import com.hider.community.mapper.UserMapper;
 import com.hider.community.model.Question;
@@ -100,6 +102,9 @@ public class QuestionService {
 
     public QuestionDto getById(Integer id) {
         Question question = questionMapper.selectByPrimaryKey(id);
+        if (question == null) {
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+        }
         QuestionDto questionDto = new QuestionDto();
         BeanUtils.copyProperties(question, questionDto);
         User user = userMapper.selectByPrimaryKey(question.getCreator());
@@ -122,7 +127,10 @@ public class QuestionService {
             updateQuestion.setTag(question.getTag());
             QuestionExample example = new QuestionExample();
             example.createCriteria().andIdEqualTo(question.getId());
-            questionMapper.updateByExampleSelective(updateQuestion, example);
+            int updated = questionMapper.updateByExampleSelective(updateQuestion, example);
+            if (updated != 1) {
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
         }
     }
 }
