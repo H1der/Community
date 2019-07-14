@@ -1,4 +1,4 @@
-package com.hider.community.community.Interceptor;
+package com.hider.community.Interceptor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

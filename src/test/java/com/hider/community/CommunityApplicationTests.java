@@ -1,4 +1,4 @@
-package com.hider.community.community;
+package com.hider.community;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

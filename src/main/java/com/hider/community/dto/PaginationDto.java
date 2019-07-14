@@ -1,4 +1,4 @@
-package com.hider.community.community.dto;
+package com.hider.community.dto;
 
 import lombok.Data;
 

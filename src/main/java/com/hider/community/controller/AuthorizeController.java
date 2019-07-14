@@ -1,11 +1,10 @@
-package com.hider.community.community.controller;
+package com.hider.community.controller;
 
-import com.hider.community.community.dto.AccessTokenDto;
-import com.hider.community.community.dto.GithubUser;
-import com.hider.community.community.mapper.UserMapper;
-import com.hider.community.community.model.User;
-import com.hider.community.community.provider.GithubProvider;
-import com.hider.community.community.service.UserService;
+import com.hider.community.dto.AccessTokenDto;
+import com.hider.community.dto.GithubUser;
+import com.hider.community.model.User;
+import com.hider.community.provider.GithubProvider;
+import com.hider.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
