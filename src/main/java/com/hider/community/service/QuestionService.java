@@ -4,6 +4,7 @@ import com.hider.community.dto.PaginationDto;
 import com.hider.community.dto.QuestionDto;
 import com.hider.community.exception.CustomizeErrorCode;
 import com.hider.community.exception.CustomizeException;
+import com.hider.community.mapper.QuestionExtMapper;
 import com.hider.community.mapper.QuestionMapper;
 import com.hider.community.mapper.UserMapper;
 import com.hider.community.model.Question;
@@ -23,6 +24,8 @@ public class QuestionService {
     private QuestionMapper questionMapper;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
 
 
     public PaginationDto list(Integer page, Integer size) {
@@ -132,5 +135,12 @@ public class QuestionService {
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
         }
+    }
+
+    public void incView(Integer id) {
+        Question question = new Question();
+        question.setId(id);
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
     }
 }
