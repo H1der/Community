@@ -10,6 +10,16 @@
     <script src="js/bootstrap.js"></script>
 
 </head>
+<script>
+    window.onload = function () {
+        var closable = localStorage.getItem("closable");
+        if (closable == "true") {
+            window.close();
+            window.localStorage.removeItem("closable");
+        }
+
+    }
+</script>
 <body>
 <div th:replace="navigation :: nav"></div>
 
