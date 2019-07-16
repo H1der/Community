@@ -38,3 +38,21 @@ body {
 .comment {
     margin: 10px 0;
 }
+
+.comment-sp {
+    margin: 0;
+}
+
+.menu {
+    color: #999;
+    margin-top: 5px;
+}
+
+.menu .icon {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.menu .icon:hover {
+    color: #499ef3;
+}
