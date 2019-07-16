@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 
 @Controller
 public class CommentController {
@@ -41,8 +40,6 @@ public class CommentController {
         comment.setLikeCount(0);
         commentService.insert(comment);
 
-        HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
-        objectObjectHashMap.put("message", "成功");
-        return objectObjectHashMap;
+        return ResultDto.okOf();
     }
 }
