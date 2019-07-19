@@ -47,7 +47,7 @@
                                 <img class="media-object img-circle" th:src="${comment.user.avatarUrl}">
                             </a>
                         </div>
-                        <div class="media-body">
+                        <div class="media-body" th:id="${'comment-body-'+comment.id}">
                             <h5 class="media-heading">
                                 <span th:text="${comment.user.name}"></span>
                             </h5>
@@ -61,31 +61,27 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 collapse"
                                  th:id="${'comment-'+comment.id}">
                                 <!--二级评论-->
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div th:each="comment : ${comments}">
-                                        <hr class="comment-sp">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object img-circle"
-                                                         th:src="${comment.user.avatarUrl}">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="media-heading">
-                                                    <span th:text="${comment.user.name}"></span>
-                                                </h5>
-                                                <div th:text="${comment.content}"></div>
-                                                <div class="menu">
-                                                    <span class="pull-right">[[${#dates.format(comment.gmtCreate,'yyyy-MM-dd')}]]</span>
-                                                </div>
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 collapse"
-                                                     th:id="${'comment-'+comment.id}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!--                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
+                                <!--                                    <div class="media">-->
+                                <!--                                            <hr class="comment-sp">-->
+                                <!--                                        <div class="media-left">-->
+                                <!--                                            <a href="#">-->
+                                <!--                                                <img class="media-object img-circle"-->
+                                <!--                                                     th:src="${comment.user.avatarUrl}">-->
+                                <!--                                            </a>-->
+                                <!--                                        </div>-->
+                                <!--                                        <div class="media-body">-->
+                                <!--                                            <h5 class="media-heading">-->
+                                <!--                                                <span th:text="${comment.user.name}"></span>-->
+                                <!--                                            </h5>-->
+                                <!--                                            <div th:text="${comment.content}"></div>-->
+                                <!--                                            <div class="menu">-->
+                                <!--                                                <span class="pull-right">[[${#dates.format(comment.gmtCreate,'yyyy-MM-dd')}]]</span>-->
+                                <!--                                            </div>-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
+
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <input type="text" class="form-control" placeholder="评论内容"
                                            th:id="${'input-'+comment.id}">
