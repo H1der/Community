@@ -1,7 +1,9 @@
 package com.hider.community.controller;
 
 import com.hider.community.dto.CommentCreateDto;
+import com.hider.community.dto.CommentDto;
 import com.hider.community.dto.ResultDto;
+import com.hider.community.enums.CommentTypeEnum;
 import com.hider.community.exception.CustomizeErrorCode;
 import com.hider.community.model.Comment;
 import com.hider.community.model.User;
@@ -9,12 +11,10 @@ import com.hider.community.service.CommentService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class CommentController {
@@ -47,5 +47,12 @@ public class CommentController {
         commentService.insert(comment);
 
         return ResultDto.okOf();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
+    public ResultDto<List> comments(@PathVariable(name = "id") Integer id) {
+        List<CommentDto> commentDtos = commentService.listByTargetId(id, CommentTypeEnum.COMMENT);
+        return ResultDto.okOf(commentDtos);
     }
 }

@@ -1,8 +1,8 @@
 package com.hider.community.controller;
 
-import com.hider.community.dto.CommentCreateDto;
 import com.hider.community.dto.CommentDto;
 import com.hider.community.dto.QuestionDto;
+import com.hider.community.enums.CommentTypeEnum;
 import com.hider.community.service.CommentService;
 import com.hider.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class QuestionController {
                            Model model) {
         QuestionDto questionDto = questionService.getById(id);
 
-        List<CommentDto> comments = commentService.ListByQuestionId(id);
+        List<CommentDto> comments = commentService.listByTargetId(id, CommentTypeEnum.QUESTION);
         //累加阅读数
         questionService.incView(id);
         model.addAttribute("question", questionDto);
