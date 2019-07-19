@@ -60,3 +60,7 @@ body {
 .menu .active {
     color: #499ef3;
 }
+
+.comment-btn {
+    margin: 10px 0;
+}
