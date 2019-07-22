@@ -68,3 +68,18 @@ body {
 .question-tag {
     margin-right: 5px;
 }
+
+.question-related {
+    line-height: 20px;
+    list-style: none;
+    padding-left: 0;
+}
+
+.question-related li {
+    padding: 3px 0;
+}
+
+.question-related li a:hover {
+    text-decoration: none;
+    color: #499ef3;
+}
