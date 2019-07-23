@@ -126,9 +126,6 @@ function showSelectTag() {
     $("#select-tag").show();
 }
 
-// function hideSelectTag() {
-//     $("#select-tag").hide();
-// }
 
 
 function selectTag(e) {
