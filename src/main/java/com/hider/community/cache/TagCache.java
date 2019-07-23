@@ -1,10 +1,12 @@
 package com.hider.community.cache;
 
 import com.hider.community.dto.TagDto;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TagCache {
     public static List<TagDto> get() {
@@ -37,5 +39,13 @@ public class TagCache {
         tool.setTags(Arrays.asList("git", "github", "visual-studio-code", "vim", "sublime-text", "xcode", "intellij-idea", "eclipse", "maven", "ide", "svn", "visual-studio", "atom", "emacs", "textmate", "hg"));
         tagDtos.add(tool);
         return tagDtos;
+    }
+
+    public static String filterInvalid(String tags) {
+        String[] split = StringUtils.split(tags, ",");
+        List<TagDto> tagDtos = get();
+        List<String> tagList = tagDtos.stream().flatMap(tag -> tag.getTags().stream()).collect(Collectors.toList());
+        String invalid = Arrays.stream(split).filter(t -> !tagList.contains(t)).collect(Collectors.joining(","));
+        return invalid;
     }
 }

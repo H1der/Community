@@ -5,6 +5,7 @@ import com.hider.community.dto.QuestionDto;
 import com.hider.community.model.Question;
 import com.hider.community.model.User;
 import com.hider.community.service.QuestionService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -66,8 +67,15 @@ public class PublishController {
             return "publish";
         }
 
+        String invalid = TagCache.filterInvalid(tag);
+        if (StringUtils.isNoneBlank(invalid)) {
+            model.addAttribute("error", "输入非法标签:" + invalid);
+            return "publish";
+        }
+
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
+            model.addAttribute("error", "用户未登录");
             return "redirect:/";
         }
 
