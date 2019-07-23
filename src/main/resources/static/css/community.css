@@ -2,6 +2,10 @@ body {
     background-color: #efefef;
 }
 
+body a:hover {
+    text-decoration: none;
+}
+
 .main {
     margin: 30px;
     background-color: white;
@@ -80,6 +84,5 @@ body {
 }
 
 .question-related li a:hover {
-    text-decoration: none;
     color: #499ef3;
 }
