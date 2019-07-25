@@ -62,7 +62,7 @@ public class QuestionService {
             questionDto.setUser(user);
             questionDtoList.add(questionDto);
         }
-        paginationDto.setQuestions(questionDtoList);
+        paginationDto.setData(questionDtoList);
 
         return paginationDto;
 
@@ -104,7 +104,7 @@ public class QuestionService {
             questionDto.setUser(user);
             questionDtoList.add(questionDto);
         }
-        paginationDto.setQuestions(questionDtoList);
+        paginationDto.setData(questionDtoList);
 
         return paginationDto;
     }
