@@ -2,6 +2,8 @@ package com.hider.community.service;
 
 import com.hider.community.dto.CommentDto;
 import com.hider.community.enums.CommentTypeEnum;
+import com.hider.community.enums.NotificationStatusEnum;
+import com.hider.community.enums.NotificationTypeEnum;
 import com.hider.community.exception.CustomizeErrorCode;
 import com.hider.community.exception.CustomizeException;
 import com.hider.community.mapper.*;
@@ -29,6 +31,8 @@ public class CommentService {
     private UserMapper userMapper;
     @Autowired
     private CommentExtMapper commentExtMapper;
+    @Autowired
+    private NotificationMapper notificationMapper;
 
     @Transactional
     public void insert(Comment comment) {
@@ -53,6 +57,9 @@ public class CommentService {
             parentComment.setId(comment.getParentId());
             parentComment.setCommentCount(1);
             commentExtMapper.incCommentCount(parentComment);
+
+            //创建通知
+            createNotify(comment, dbComment.getCommentator(), NotificationTypeEnum.REPLY_COMMENT);
         } else {
             //回复问题
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
@@ -63,8 +70,22 @@ public class CommentService {
             question.setCommentCount(1);
             questionExtMapper.incCommentCount(question);
 
+            //创建通知
+            createNotify(comment, question.getCreator(), NotificationTypeEnum.REPLY_QUESTION);
+
         }
 
+    }
+
+    private void createNotify(Comment comment, Integer receiver, NotificationTypeEnum notificationType) {
+        Notification notification = new Notification();
+        notification.setGmtCreate(System.currentTimeMillis());
+        notification.setType(notificationType.getType());
+        notification.setOuterId(comment.getParentId());
+        notification.setNotifier(comment.getCommentator());
+        notification.setStatus(NotificationStatusEnum.UNREAD.getStatus());
+        notification.setReceiver(receiver);
+        notificationMapper.insert(notification);
     }
 
     public List<CommentDto> listByTargetId(Integer id, CommentTypeEnum type) {
