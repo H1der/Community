@@ -2,7 +2,10 @@ package com.hider.community.service;
 
 import com.hider.community.dto.NotificationDto;
 import com.hider.community.dto.PaginationDto;
+import com.hider.community.enums.NotificationStatusEnum;
 import com.hider.community.enums.NotificationTypeEnum;
+import com.hider.community.exception.CustomizeErrorCode;
+import com.hider.community.exception.CustomizeException;
 import com.hider.community.mapper.NotificationMapper;
 import com.hider.community.mapper.UserMapper;
 import com.hider.community.model.Notification;
@@ -14,10 +17,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -60,7 +60,7 @@ public class NotificationService {
         for (Notification notification : notifications) {
             NotificationDto notificationDto = new NotificationDto();
             BeanUtils.copyProperties(notification, notificationDto);
-            notificationDto.setType(NotificationTypeEnum.nameOfType(notification.getType()));
+            notificationDto.setTypeName(NotificationTypeEnum.nameOfType(notification.getType()));
             notificationDtos.add(notificationDto);
         }
         paginationDto.setData(notificationDtos);
@@ -69,7 +69,24 @@ public class NotificationService {
 
     public Long unreadCount(Integer userId) {
         NotificationExample notificationExample = new NotificationExample();
-        notificationExample.createCriteria().andReceiverEqualTo(userId);
+        notificationExample.createCriteria().andReceiverEqualTo(userId).andStatusEqualTo(NotificationStatusEnum.UNREAD.getStatus());
         return notificationMapper.countByExample(notificationExample);
+    }
+
+    public NotificationDto read(Integer id, User user) {
+        Notification notification = notificationMapper.selectByPrimaryKey(id);
+        if (notification == null) {
+            throw new CustomizeException(CustomizeErrorCode.READ_NOTIFICATION_FAIL);
+        }
+        if (!Objects.equals(notification.getReceiver(), user.getId())) {
+            throw new CustomizeException(CustomizeErrorCode.READ_NOTIFICATION_FAIL);
+        }
+        notification.setStatus(NotificationStatusEnum.READ.getStatus());
+        notificationMapper.updateByPrimaryKey(notification);
+
+        NotificationDto notificationDto = new NotificationDto();
+        BeanUtils.copyProperties(notification, notificationDto);
+        notificationDto.setTypeName(NotificationTypeEnum.nameOfType(notification.getType()));
+        return notificationDto;
     }
 }
