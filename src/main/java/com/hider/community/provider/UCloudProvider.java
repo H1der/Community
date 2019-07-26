@@ -7,6 +7,8 @@ import cn.ucloud.ufile.auth.UfileObjectLocalAuthorization;
 import cn.ucloud.ufile.bean.PutObjectResultBean;
 import cn.ucloud.ufile.exception.UfileClientException;
 import cn.ucloud.ufile.exception.UfileServerException;
+import com.hider.community.exception.CustomizeErrorCode;
+import com.hider.community.exception.CustomizeException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,8 @@ public class UCloudProvider {
     private String publicKey;
     @Value("${ucloud.ufile.private-key}")
     private String privateKey;
+    private String bucketName = "2hider";
+    ;
 
 
     public String upload(InputStream fileStream, String mimeType, String fileName) {
@@ -40,7 +44,7 @@ public class UCloudProvider {
             PutObjectResultBean response = UfileClient.object(objectAuthorization, config)
                     .putObject(fileStream, mimeType)
                     .nameAs(generatedFileName)
-                    .toBucket("2hider")
+                    .toBucket(bucketName)
                     /**
                      * 是否上传校验MD5, Default = true
                      */
@@ -56,13 +60,20 @@ public class UCloudProvider {
 
                     })
                     .execute();
+            if (response != null && response.getRetCode() == 0) {
+                String url = UfileClient.object(objectAuthorization, config)
+                        .getDownloadUrlFromPrivateBucket(generatedFileName, bucketName, 24 * 60 * 60)
+                        .createUrl();
+                return url;
+            } else {
+                throw new CustomizeException(CustomizeErrorCode.FILE_UPLOAD_FAIL);
+            }
         } catch (UfileClientException e) {
             e.printStackTrace();
-            return null;
+            throw new CustomizeException(CustomizeErrorCode.FILE_UPLOAD_FAIL);
         } catch (UfileServerException e) {
             e.printStackTrace();
-            return null;
+            throw new CustomizeException(CustomizeErrorCode.FILE_UPLOAD_FAIL);
         }
-        return generatedFileName;
     }
 }
