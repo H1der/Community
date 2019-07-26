@@ -43,7 +43,7 @@
                 <br>
                 <hr>
                 <span class="label label-info question-tag" th:each="tag : ${question.tag.split(',')}"><span
-                        class="glyphicon glyphicon-tags"></span>[[${tag}]]</span>
+                        class="glyphicon glyphicon-tags"></span> [[${tag}]]</span>
                 <hr>
                 <a th:href="@{'/publish/'+${question.id}}" class="community-menu"
                    th:if="${session.user != null && session.user.id == question.creator}">
