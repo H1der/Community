@@ -88,17 +88,17 @@
                 </div>
             </div>
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section" th:if="${session.user}">
                 <hr>
                 <div class="media">
                     <div class="media-left">
                         <a href="#">
-                            <img class="media-object img-circle" th:src="${question.user.avatarUrl}">
+                            <img class="media-object img-circle" th:src="${session.user.avatarUrl}">
                         </a>
                     </div>
                     <div class="media-body">
                         <h5 class="media-heading">
-                            <span th:text="${question.user.name}"></span>
+                            <span th:text="${session.user.name}"></span>
                         </h5>
                     </div>
                 </div>
