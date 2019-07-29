@@ -1,9 +1,7 @@
 package com.hider.community.mapper;
 
+import com.hider.community.dto.QuestionQueryDto;
 import com.hider.community.model.Question;
-import com.hider.community.model.QuestionExample;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.session.RowBounds;
 
 import java.util.List;
 
@@ -14,4 +12,8 @@ public interface QuestionExtMapper {
     int incCommentCount(Question record);
 
     List<Question> selectRelated(Question question);
+
+    Integer countBySearch(QuestionQueryDto questionQueryDto);
+
+    List<Question> selectBySearch(QuestionQueryDto questionQueryDto);
 }

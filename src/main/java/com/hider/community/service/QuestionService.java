@@ -2,6 +2,7 @@ package com.hider.community.service;
 
 import com.hider.community.dto.PaginationDto;
 import com.hider.community.dto.QuestionDto;
+import com.hider.community.dto.QuestionQueryDto;
 import com.hider.community.exception.CustomizeErrorCode;
 import com.hider.community.exception.CustomizeException;
 import com.hider.community.mapper.QuestionExtMapper;
@@ -31,10 +32,16 @@ public class QuestionService {
     private QuestionExtMapper questionExtMapper;
 
 
-    public PaginationDto list(Integer page, Integer size) {
+    public PaginationDto list(String search, Integer page, Integer size) {
+        if (StringUtils.isNoneBlank(search)) {
+            String[] tags = StringUtils.split(search, ' ');
+            search = Arrays.stream(tags).collect(Collectors.joining("|"));
+        }
         PaginationDto paginationDto = new PaginationDto();
         Integer totalPage;
-        Integer totalCount = (int) questionMapper.countByExample(new QuestionExample());
+        QuestionQueryDto questionQueryDto = new QuestionQueryDto();
+        questionQueryDto.setSearch(search);
+        Integer totalCount = questionExtMapper.countBySearch(questionQueryDto);
 
         if (totalCount % size == 0) {
             totalPage = totalCount / size;
@@ -51,7 +58,9 @@ public class QuestionService {
 
         QuestionExample questionExample = new QuestionExample();
         questionExample.setOrderByClause("gmt_create desc");
-        List<Question> questions = questionMapper.selectByExampleWithRowbounds(questionExample, new RowBounds(offset, size));
+        questionQueryDto.setSize(size);
+        questionQueryDto.setPage(offset);
+        List<Question> questions = questionExtMapper.selectBySearch(questionQueryDto);
         List<QuestionDto> questionDtoList = new ArrayList<>();
 
 
