@@ -102,3 +102,9 @@ body a:hover {
 .publish-tag-tab .tab-pane span {
     cursor: pointer;
 }
+
+.footer {
+    color: #666;
+    font-size: 12px;
+    text-align: center;
+}
