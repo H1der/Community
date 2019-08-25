@@ -1,48 +1,35 @@
-2019-07-29 22:40:57.538  INFO 9160 --- [main] c.hider.community.CommunityApplication   : Starting CommunityApplication on DESKTOP-8CDLG77 with PID 9160 (D:\java-workspace\Community\target\classes started by hider in D:\java-workspace\Community)
-2019-07-29 22:40:57.541  INFO 9160 --- [main] c.hider.community.CommunityApplication   : No active profile set, falling back to default profiles: default
-2019-07-29 22:40:59.202  INFO 9160 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2019-07-29 22:40:59.231  INFO 9160 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2019-07-29 22:40:59.262  INFO 9160 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
-2019-07-29 22:40:59.386  INFO 9160 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2019-07-29 22:40:59.386  INFO 9160 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1782 ms
-2019-07-29 22:41:00.192  INFO 9160 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2019-07-29 22:41:00.196  INFO 9160 --- [main] c.hider.community.CommunityApplication   : Started CommunityApplication in 3.207 seconds (JVM running for 5.062)
-2019-07-29 22:41:07.371  INFO 9160 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2019-07-29 22:41:07.372  INFO 9160 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2019-07-29 22:41:07.379  INFO 9160 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
-2019-07-29 22:41:07.432  INFO 9160 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2019-07-29 22:41:07.725  INFO 9160 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2019-07-29 22:41:07.733 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, bio, token, gmt_create, gmt_modified, avatar_url from user WHERE ( token = ? ) 
-2019-07-29 22:41:07.756 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.mapper.UserMapper.selectByExample  : ==> Parameters: a73580a6-fea0-4794-8723-b7d078ee2a85(String)
-2019-07-29 22:41:07.774 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.mapper.UserMapper.selectByExample  : <==      Total: 1
-2019-07-29 22:41:08.286  WARN 9160 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [505] milliseconds.
-2019-07-29 22:41:08.292 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.N.countByExample                 : ==>  Preparing: select count(*) from notification WHERE ( receiver = ? and status = ? ) 
-2019-07-29 22:41:08.292 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.N.countByExample                 : ==> Parameters: 8(Integer), 0(Integer)
-2019-07-29 22:41:08.294 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.N.countByExample                 : <==      Total: 1
-2019-07-29 22:41:08.312 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.QuestionExtMapper.countBySearch  : ==>  Preparing: select count(*) from question 
-2019-07-29 22:41:08.313 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.QuestionExtMapper.countBySearch  : ==> Parameters: 
-2019-07-29 22:41:08.315 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.QuestionExtMapper.countBySearch  : <==      Total: 1
-2019-07-29 22:41:08.316 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.Q.selectBySearch                 : ==>  Preparing: select * from question order by gmt_create desc limit ?,? 
-2019-07-29 22:41:08.316 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.Q.selectBySearch                 : ==> Parameters: 0(Integer), 5(Integer)
-2019-07-29 22:41:08.322 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.Q.selectBySearch                 : <==      Total: 5
-2019-07-29 22:41:08.323 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, bio, token, gmt_create, gmt_modified, avatar_url from user where id = ? 
-2019-07-29 22:41:08.323 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 8(Integer)
-2019-07-29 22:41:08.324 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
-2019-07-29 22:41:08.335 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, bio, token, gmt_create, gmt_modified, avatar_url from user where id = ? 
-2019-07-29 22:41:08.335 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 8(Integer)
-2019-07-29 22:41:08.337 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
-2019-07-29 22:41:08.338 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, bio, token, gmt_create, gmt_modified, avatar_url from user where id = ? 
-2019-07-29 22:41:08.338 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 8(Integer)
-2019-07-29 22:41:08.339 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
-2019-07-29 22:41:08.340 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, bio, token, gmt_create, gmt_modified, avatar_url from user where id = ? 
-2019-07-29 22:41:08.340 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 8(Integer)
-2019-07-29 22:41:08.342 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
-2019-07-29 22:41:08.342 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, bio, token, gmt_create, gmt_modified, avatar_url from user where id = ? 
-2019-07-29 22:41:08.342 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 8(Integer)
-2019-07-29 22:41:08.344 DEBUG 9160 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
-2019-07-29 22:41:08.770 DEBUG 9160 --- [http-nio-8080-exec-2] c.h.c.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, bio, token, gmt_create, gmt_modified, avatar_url from user WHERE ( token = ? ) 
-2019-07-29 22:41:08.771 DEBUG 9160 --- [http-nio-8080-exec-2] c.h.c.mapper.UserMapper.selectByExample  : ==> Parameters: a73580a6-fea0-4794-8723-b7d078ee2a85(String)
-2019-07-29 22:41:08.774 DEBUG 9160 --- [http-nio-8080-exec-2] c.h.c.mapper.UserMapper.selectByExample  : <==      Total: 1
-2019-07-29 22:41:08.776 DEBUG 9160 --- [http-nio-8080-exec-2] c.h.c.m.N.countByExample                 : ==>  Preparing: select count(*) from notification WHERE ( receiver = ? and status = ? ) 
-2019-07-29 22:41:08.776 DEBUG 9160 --- [http-nio-8080-exec-2] c.h.c.m.N.countByExample                 : ==> Parameters: 8(Integer), 0(Integer)
-2019-07-29 22:41:08.779 DEBUG 9160 --- [http-nio-8080-exec-2] c.h.c.m.N.countByExample                 : <==      Total: 1
+2019-08-11 18:37:10.925  INFO 13232 --- [main] c.hider.community.CommunityApplication   : Starting CommunityApplication on DESKTOP-8CDLG77 with PID 13232 (D:\java-workspace\Community\target\classes started by hider in D:\java-workspace\Community)
+2019-08-11 18:37:11.226  INFO 13232 --- [main] c.hider.community.CommunityApplication   : No active profile set, falling back to default profiles: default
+2019-08-11 18:37:14.165  INFO 13232 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-08-11 18:37:14.276  INFO 13232 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-08-11 18:37:14.308  INFO 13232 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-11 18:37:14.480  INFO 13232 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-08-11 18:37:14.480  INFO 13232 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2881 ms
+2019-08-11 18:37:16.066  INFO 13232 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-11 18:37:16.073  INFO 13232 --- [main] c.hider.community.CommunityApplication   : Started CommunityApplication in 6.591 seconds (JVM running for 10.141)
+2019-08-11 18:37:27.356  INFO 13232 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-08-11 18:37:27.357  INFO 13232 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-08-11 18:37:27.365  INFO 13232 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2019-08-11 18:37:27.471  INFO 13232 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-08-11 18:37:28.060  INFO 13232 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-08-11 18:37:28.072 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.QuestionExtMapper.countBySearch  : ==>  Preparing: select count(*) from question 
+2019-08-11 18:37:28.104 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.QuestionExtMapper.countBySearch  : ==> Parameters: 
+2019-08-11 18:37:28.143 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.QuestionExtMapper.countBySearch  : <==      Total: 1
+2019-08-11 18:37:28.147 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.Q.selectBySearch                 : ==>  Preparing: select * from question order by gmt_create desc limit ?,? 
+2019-08-11 18:37:28.148 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.Q.selectBySearch                 : ==> Parameters: 0(Integer), 5(Integer)
+2019-08-11 18:37:28.153 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.Q.selectBySearch                 : <==      Total: 5
+2019-08-11 18:37:28.154 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, bio, token, gmt_create, gmt_modified, avatar_url from user where id = ? 
+2019-08-11 18:37:28.155 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 8(Integer)
+2019-08-11 18:37:28.163 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-08-11 18:37:28.176 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, bio, token, gmt_create, gmt_modified, avatar_url from user where id = ? 
+2019-08-11 18:37:28.176 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 8(Integer)
+2019-08-11 18:37:28.179 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-08-11 18:37:28.180 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, bio, token, gmt_create, gmt_modified, avatar_url from user where id = ? 
+2019-08-11 18:37:28.180 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 8(Integer)
+2019-08-11 18:37:28.182 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-08-11 18:37:28.183 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, bio, token, gmt_create, gmt_modified, avatar_url from user where id = ? 
+2019-08-11 18:37:28.184 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 8(Integer)
+2019-08-11 18:37:28.189 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-08-11 18:37:28.190 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, bio, token, gmt_create, gmt_modified, avatar_url from user where id = ? 
+2019-08-11 18:37:28.190 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 8(Integer)
+2019-08-11 18:37:28.193 DEBUG 13232 --- [http-nio-8080-exec-1] c.h.c.m.UserMapper.selectByPrimaryKey    : <==      Total: 1

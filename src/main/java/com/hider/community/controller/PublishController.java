@@ -2,6 +2,8 @@ package com.hider.community.controller;
 
 import com.hider.community.cache.TagCache;
 import com.hider.community.dto.QuestionDto;
+import com.hider.community.exception.CustomizeErrorCode;
+import com.hider.community.exception.CustomizeException;
 import com.hider.community.model.Question;
 import com.hider.community.model.User;
 import com.hider.community.service.QuestionService;
@@ -23,9 +25,12 @@ public class PublishController {
     private QuestionService questionService;
 
     @GetMapping("/publish/{id}")
-    public String edit(@PathVariable(name = "id") Integer id, Model model) {
+    public String edit(@PathVariable(name = "id") Integer id, Model model, HttpServletRequest request) {
         QuestionDto question = questionService.getById(id);
-
+        User user = (User) request.getSession().getAttribute("user");
+        if (question.getCreator() != user.getId()) {
+            throw new CustomizeException(CustomizeErrorCode.CAN_NOT_EDIT_QUESTION);
+        }
         model.addAttribute("title", question.getTitle());
         model.addAttribute("description", question.getDescription());
         model.addAttribute("tag", question.getTag());
